@@ -67,7 +67,7 @@ class UserController extends Controller
             'email'            => 'required|unique:users',
             'password'         => 'required',
             'confirm_password' => 'required|same:password',
-            'image'            => 'image',
+            'image'            => 'required|image',
          ]);
 
          $validate = request()->except(['_token','confirm_password','permissions','image']);

@@ -18,6 +18,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{asset('dashboard/css/sb-admin-2.min.css')}}" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">
@@ -76,5 +78,13 @@
             @yield('content')
         </main>
     </div>
+
+
+  <script src="{{ asset('dashboard/vendor/jquery/jquery.min.js') }}"></script>
+  <script src="{{ asset('dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="{{ asset('dashboard/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
 </body>
 </html>

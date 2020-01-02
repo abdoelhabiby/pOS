@@ -128,8 +128,23 @@
 
 </div>            <!--  end of row  -->
  
- <hr style="  border: 1px solid #4e73df;">
 
+
+
+
+<!-- ========================================================================-->
+
+
+                    <!-- Card Body -->
+                    <div class="card-body" style="background: #FFF">
+                       <h3 class="text-center text-primary font-weight-bold">Sales 2019</h3>
+                      <div class="chart-area">
+                        <canvas id="myAreaChart"></canvas>
+                      </div>
+                    </div>
+
+
+<!-- ======================================================================================== -->
 
 
 
@@ -137,7 +152,7 @@
 
 
         <!-- Content Row -->
-          <div class="row">
+          <div class="row mt-5">
 
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
@@ -231,20 +246,14 @@
 
       <!-- ==================================================================     -->
 
-<!-- ========================================================================-->
-
-
-                    <!-- Card Body -->
-                    <div class="card-body">
-                       <h3 class="text-center text-primary font-weight-bold">Sales</h3>
-                      <div class="chart-area">
-                        <canvas id="myAreaChart"></canvas>
-                      </div>
-                    </div>
 
 
 
 
+
+
+
+<!-- ========================================================================= -->
 
 
 

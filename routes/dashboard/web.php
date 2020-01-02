@@ -22,40 +22,7 @@ Route::group(
 	              Route::get('/home','DashboardController@index')->name('home');
    
 
-	     	     Route::get('/premission',function(){
-                       
-                       // $role = Role::find(1);
-
-                       // $role->givePermissionTo(['create','read','update','delete']);
-                        
-                        // $permission = auth()->user()->getAllPermissions();
-
-                        // foreach ($permission as $value) {
-                        // 	echo $value['name'] . " | " ;
-                        // }
-
-
-           //                     $permission = Permission::where('id' , '>' ,'12')->pluck('name');
-
-							    //  // return $Permission;
-							        
-							    // $role = Role::find(1);
-
-							    //  //return $role;
-
-							    //  $role->givePermissionTo($permission);
-
-
-	     	
-	     	    
-
-
-
-								     	
-                    
-
-                       
-	     	     });
+	     	   
 
 
              //-------------------usesr route ----------------------

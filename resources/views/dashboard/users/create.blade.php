@@ -59,6 +59,10 @@
              	<label>Choose Your Image </label><br>
              	<input type="file" name="image">
 
+          @if($errors->has('image'))
+             <p class="text-danger text-uppercase">{{$errors->first('image')}}</p>
+          @endif
+
              </div>
   
 

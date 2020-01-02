@@ -19,19 +19,24 @@ class DashboardController extends Controller
     
 
    public function index(){
+
+
+     //$year = Date('Y');
+     $year = "2019";
+
+
      
-$orders = Order::select(
+     $orders = Order::select(
       
       \DB::raw("SUM(TotalPrice) as TotalPrice"),
       \DB::raw("COUNT(id) as AllOrders")
 
 
-      )->whereYear('created_at','2019')->get();
+      )->whereYear('created_at',$year)->get();
 
 
 
-
-
+ 
 
     $order_chart = Order::select(
           
@@ -39,7 +44,7 @@ $orders = Order::select(
           \DB::raw('MONTH(created_at) as month'),
           \DB::raw('SUM(TotalPrice) as total_price')
 
-    )->groupBy('MONTH')->whereYear('created_at','2019')->get();
+    )->groupBy('MONTH')->whereYear('created_at', $year)->get();
 
     // return $order_chart;
 

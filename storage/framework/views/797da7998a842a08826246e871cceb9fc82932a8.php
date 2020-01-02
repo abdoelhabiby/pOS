@@ -18,6 +18,8 @@
 
     <!-- Styles -->
     <link href="<?php echo e(asset('css/app.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('dashboard/css/sb-admin-2.min.css')); ?>" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">
@@ -78,6 +80,14 @@
             <?php echo $__env->yieldContent('content'); ?>
         </main>
     </div>
+
+
+  <script src="<?php echo e(asset('dashboard/vendor/jquery/jquery.min.js')); ?>"></script>
+  <script src="<?php echo e(asset('dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js')); ?>"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="<?php echo e(asset('dashboard/vendor/jquery-easing/jquery.easing.min.js')); ?>"></script>
+
 </body>
 </html>
 <?php /**PATH /home/ubuntu/F-DASHBOARD/resources/views/layouts/app.blade.php ENDPATH**/ ?>
