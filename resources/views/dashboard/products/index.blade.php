@@ -133,7 +133,7 @@
          <td>{!! $product->description !!}</td>
          <td>${!! $product->purchasing_price !!}</td>
          <td>${!! $product->sale_price !!}</td>
-         <td>{!! round($product->profit_ratio,2) ." %" !!}</td>
+         <td>{!!  $product->profit_ratio ." %" !!}</td>
          <td>{!! $product->quantity !!}</td>
          <td>{!! $product->category->name !!}</td>
          <td>

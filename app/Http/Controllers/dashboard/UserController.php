@@ -32,7 +32,7 @@ class UserController extends Controller
  
       
 
-  $users = User::where('id',"!=",'1')->when(request()->search,function($q){
+  $users = User::role('Admin')->when(request()->search,function($q){
          
          return $q->where('name','like',"%" . request()->search ."%");
 
@@ -95,6 +95,8 @@ class UserController extends Controller
           
          $user = User::create($validate);
 
+         $user->assignRole('Admin');
+
          $user->syncPermissions($permissions);
 
          $newsname1 = str_replace($temp,$user['id'], $validate['image']); 
@@ -119,9 +121,12 @@ class UserController extends Controller
 
        
 
-         $validate['image'] = 'storage/testImages/1/default.jpg';
+         $validate['image'] = 'storage/testImages/default.png';
           
          $user = User::create($validate);
+         
+          $user->assignRole('Admin');
+
 
          $user->syncPermissions($permissions);
 

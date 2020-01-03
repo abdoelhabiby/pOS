@@ -19,8 +19,10 @@ class CreateProductsTable extends Migration
 
             $table->string('name');
             $table->string('image')->default('default.png');
+            $table->text('description');
             $table->double('purchasing_price',8,2);
             $table->double('sale_price',8,2);
+            $table->double('profit_ratio',8,2);
             $table->integer("quantity");
 
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');

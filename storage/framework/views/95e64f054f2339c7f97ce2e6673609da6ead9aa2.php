@@ -133,7 +133,7 @@
          <td><?php echo $product->description; ?></td>
          <td>$<?php echo $product->purchasing_price; ?></td>
          <td>$<?php echo $product->sale_price; ?></td>
-         <td><?php echo round($product->profit_ratio,2) ." %"; ?></td>
+         <td><?php echo $product->profit_ratio ." %"; ?></td>
          <td><?php echo $product->quantity; ?></td>
          <td><?php echo $product->category->name; ?></td>
          <td>

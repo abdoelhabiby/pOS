@@ -48,13 +48,13 @@
 											  <div class="card">
 											    <div class="card-header card-he2" id="headingThree">
 											      <h5 class="mb-0">
-											        <button class="btn btn-link collapsed fix-foo" data-toggle="collapse" data-target="#collapse{{$cate->id}}" aria-expanded="false" aria-controls="collapseThree">
+											        <button class="btn btn-link collapsed fix-foo" data-toggle="collapse" data-target="#collapse-c-{{$cate->id}}" aria-expanded="false" aria-controls="collapseThree">
 											         {{$cate->name}}
 											        </button>
 											      </h5>
 											    </div>
                                     @if($cate->products->count() > 0)
-											    <div id="collapse{{$cate->id}}" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+											    <div id="collapse-c-{{$cate->id}}" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
 											      <div class="card-body">
                         
 
@@ -175,13 +175,13 @@
 											  <div class="card">
 											    <div class="card-header card-he2" id="headingThree">
 											      <h5 class="mb-0">
-											        <button class="btn btn-link collapsed fix-foo" data-toggle="collapse" data-target="#collapse{{$ord_date->id}}" aria-expanded="false" aria-controls="collapseThree">
+											        <button class="btn btn-link collapsed fix-foo" data-toggle="collapse" data-target="#collapse-or-{{$ord_date->id}}" aria-expanded="false" aria-controls="collapseThree">
 											         {{$ord_date->created_at}}
 											        </button>
 											      </h5>
 											    </div>
                                     @if($ord_date->product->count() > 0)
-											    <div id="collapse{{$ord_date->id}}" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+											    <div id="collapse-or-{{$ord_date->id}}" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
 											      <div class="card-body">
                         
 

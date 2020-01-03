@@ -46,14 +46,14 @@
 											  <div class="card">
 											    <div class="card-header card-he2" id="headingThree">
 											      <h5 class="mb-0">
-											        <button class="btn btn-link collapsed fix-foo" data-toggle="collapse" data-target="#collapse-c-<?php echo e($cate->id); ?>" aria-expanded="false" aria-controls="collapseThree">
+											        <button class="btn btn-link collapsed fix-foo" data-toggle="collapse" data-target="#collapse<?php echo e($cate->id); ?>" aria-expanded="false" aria-controls="collapseThree">
 											         <?php echo e($cate->name); ?>
 
 											        </button>
 											      </h5>
 											    </div>
                                     <?php if($cate->products->count() > 0): ?>
-											    <div id="collapse-c-<?php echo e($cate->id); ?>" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+											    <div id="collapse<?php echo e($cate->id); ?>" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
 											      <div class="card-body">
                         
 
@@ -73,12 +73,11 @@
 											      				<td><?php echo $product->sale_price; ?></td>
 											      				<td><?php echo $product->quantity; ?></td>
 											      				<td>
-									 <a href="" class="btn btn-success btn-sm add-order" 
+									 <a href="" class="btn btn-success btn-sm add-order <?php echo e(in_array($product->id, $order->product->pluck('id')->toArray()) ? 'disabled' : ''); ?>" 
 									    data-name = '<?php echo $product->name; ?>'
 									    data-price='<?php echo $product->sale_price; ?>'
                                         id = 'product-<?php echo $product->id; ?>'
                                         data-id = '<?php echo $product->id; ?>'
-                                        data-client = '<?php echo $clientId; ?>'
 
 									    >
 									    <i class="fa fa-plus"></i></a>
@@ -115,8 +114,9 @@
 				                <!-- Card Body -->
 				            <div class="card-body">
                             
-                         <form action="<?php echo e(route('order.store')); ?>" method="POST">
+                         <form action="<?php echo e(route('order.update',$order->id)); ?>" method="POST">
                          	<?php echo csrf_field(); ?>
+                         	<?php echo method_field('put'); ?>
                          	<input type="hidden" name="client_id" value="<?php echo e(request()->client_id); ?>">
 
                          	 	<table class="table text-center">
@@ -129,15 +129,32 @@
 						      			</tr>
 						      		</thead>
 						      		<tbody class="app-order">
+                            <?php $__currentLoopData = $productOrder; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $prod_Ord): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>            
+                                        <tr class='order-<?php echo e($prod_Ord->id); ?>'>
+							             <input type='hidden' name='products_id[]' value='<?php echo $prod_Ord->id; ?>'>
+							             
+							              <td><?php echo $prod_Ord->name; ?></td>
+							              <td>
+							                 <input type='number' name='quantity[]' min=1 value="<?php echo e($prod_Ord->pivot->quantity); ?>" class='form-control decressIncress'>
+							              </td>
+							              <td class='ProductPrice' data-price='<?php echo number_format($prod_Ord->sale_price,2); ?>'>
+							              	<?php echo number_format(($prod_Ord->sale_price * $prod_Ord->pivot->quantity),2); ?>
 
-
+							              </td>
+							              <td>
+							               <button class='btn btn-danger btn-sm removeo'  data-id='<?php echo e($prod_Ord->id); ?>'>
+							                     <i class='fa fa-trash'></i>
+							                   </button> 
+							              </td>
+							            </tr>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 						      		</tbody>
 
 
 						      	</table>
 						      	<div class="form-group container row">
-                                   <h5 class="col-md-8 mt-2">ToTal : <span class="TotalAmount">0</span></h5>
+                                   <h5 class="col-md-8 mt-2">ToTal : <span class="TotalAmount"><?php echo e($order->TotalPrice); ?></span></h5>
 
 						      	 <input type="submit" name="order" value="Submit Order" class="btn btn-primary  col-md-4 SubmitOrder disabled" >
                          	   </div>
@@ -151,82 +168,5 @@
 
          </div> 
 
-
-  <!-- ========================= all order to this client ============================ -->
-
-   
-   <?php if($order->count() > 0): ?>
-
-    <div class="row">
-
-                    <div class="col-md-6">
-				              <div class="card shadow mb-4">
-				                <!-- Card Header - Dropdown -->
-				                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-				                  <h6 class="m-0 font-weight-bold text-primary"><?php echo e($order->count()); ?> previous orders</h6>
-				
-				                </div>
-				                <!-- Card Body -->
-				                <div class="card-body">
-									      <div id="accordion">
-									
-				<?php $__currentLoopData = $order; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ord_date): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>					
-											  <div class="card">
-											    <div class="card-header card-he2" id="headingThree">
-											      <h5 class="mb-0">
-											        <button class="btn btn-link collapsed fix-foo" data-toggle="collapse" data-target="#collapse-or-<?php echo e($ord_date->id); ?>" aria-expanded="false" aria-controls="collapseThree">
-											         <?php echo e($ord_date->created_at); ?>
-
-											        </button>
-											      </h5>
-											    </div>
-                                    <?php if($ord_date->product->count() > 0): ?>
-											    <div id="collapse-or-<?php echo e($ord_date->id); ?>" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-											      <div class="card-body">
-                        
-
-											      	<table class="table text-center">
-											      		<thead>
-											      			<tr>
-											      				<th>Name</th>
-											      				<th>Price</th>
-											      				<th>Quantity in stock</th>
-											      			</tr>
-											      		</thead>
-											      		<tbody>
-							<?php $__currentLoopData = $ord_date->product; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $products): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>				      			
-											      			<tr>
-											      				<td><?php echo $products->name; ?></td>
-											      				<td><?php echo $products->sale_price; ?></td>
-											      				<td><?php echo $products->quantity; ?></td>
-											      				<td>
-	
-											      				</td>
-											      			</tr>
-							<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>				      			
-											      		</tbody>
-											      	</table>
-											    	
-		
-											      </div>
-											    </div>
-											<?php endif; ?>      
-											  </div>     
-
-											  <!-- en of card -->
-
-
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
-									   </div>
-
-				                </div>
-				              </div>
-                    </div>
-                </div>
-
-        <?php endif; ?>        
-       <!-- ========================================================================= -->
-
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make('layouts.dashboard.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/ubuntu/F-DASHBOARD/resources/views/dashboard/client/order/create.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.dashboard.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/ubuntu/F-DASHBOARD/resources/views/dashboard/client/order/edit.blade.php ENDPATH**/ ?>

@@ -135,7 +135,7 @@
 
                     <!-- Card Body -->
                     <div class="card-body" style="background: #FFF">
-                       <h3 class="text-center text-primary font-weight-bold">Sales 2019</h3>
+                       <h3 class="text-center text-primary font-weight-bold">Sales {{Date('Y')}}</h3>
                       <div class="chart-area">
                         <canvas id="myAreaChart"></canvas>
                       </div>

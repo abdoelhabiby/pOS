@@ -21,8 +21,8 @@ class DashboardController extends Controller
    public function index(){
 
 
-     //$year = Date('Y');
-     $year = "2019";
+     $year = Date('Y');
+     //$year = "2019";
 
 
      

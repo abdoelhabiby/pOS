@@ -1,6 +1,6 @@
 <?php $__env->startSection('search'); ?>
 
-    <form action='<?php echo e(route("category.index")); ?>' method="get">
+    <form action='<?php echo e(route("users.index")); ?>' method="get">
             <div class="input-group">
           <input type="text" class="form-control bg-light border-0 small" placeholder="<?php echo app('translator')->get('site.search'); ?>" aria-label="Search" aria-describedby="basic-addon2" name="search" value="<?php echo e(request()->search); ?>">
               <div class="input-group-append">
