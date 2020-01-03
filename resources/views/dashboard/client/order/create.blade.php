@@ -63,17 +63,21 @@
 											      			<tr>
 											      				<th>Name</th>
 											      				<th>Price</th>
-											      				<th>Quantity in stock</th>
+											      				<th>Available quantity</th>
 											      				<th>Add</th>
 											      			</tr>
 											      		</thead>
 											      		<tbody>
-							@foreach($cate->products as $product)				      			
-											      			<tr>
+							@foreach($cate->products as $product)
+                                                   <tr>
+											      			
 											      				<td>{!! $product->name !!}</td>
 											      				<td>{!! $product->sale_price !!}</td>
 											      				<td>{!! $product->quantity !!}</td>
 											      				<td>
+					   @if($product->quantity > 0)				      			
+      					
+
 									 <a href="" class="btn btn-success btn-sm add-order" 
 									    data-name = '{!! $product->name !!}'
 									    data-price='{!! $product->sale_price !!}'
@@ -83,7 +87,12 @@
 
 									    >
 									    <i class="fa fa-plus"></i></a>
+						@else
+						  The quantity is over
+						 @endif 			    
 											      				</td>
+
+										      				
 											      			</tr>
 							@endforeach				      			
 											      		</tbody>
@@ -190,7 +199,8 @@
 											      			<tr>
 											      				<th>Name</th>
 											      				<th>Price</th>
-											      				<th>Quantity in stock</th>
+											      				<th>Quantity</th>
+											      				<th>Total Price</th>
 											      			</tr>
 											      		</thead>
 											      		<tbody>
@@ -198,7 +208,8 @@
 											      			<tr>
 											      				<td>{!! $products->name !!}</td>
 											      				<td>{!! $products->sale_price !!}</td>
-											      				<td>{!! $products->quantity !!}</td>
+											      				<td>{!! $products->pivot->quantity !!}</td>
+											      				<td>{!! number_format($products->sale_price * $products->pivot->quantity,2) !!}</td>
 											      				<td>
 	
 											      				</td>

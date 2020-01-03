@@ -62,17 +62,21 @@
 											      			<tr>
 											      				<th>Name</th>
 											      				<th>Price</th>
-											      				<th>Quantity in stock</th>
+											      				<th>Available quantity</th>
 											      				<th>Add</th>
 											      			</tr>
 											      		</thead>
 											      		<tbody>
-							<?php $__currentLoopData = $cate->products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>				      			
-											      			<tr>
+							<?php $__currentLoopData = $cate->products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                   <tr>
+											      			
 											      				<td><?php echo $product->name; ?></td>
 											      				<td><?php echo $product->sale_price; ?></td>
 											      				<td><?php echo $product->quantity; ?></td>
 											      				<td>
+					   <?php if($product->quantity > 0): ?>				      			
+      					
+
 									 <a href="" class="btn btn-success btn-sm add-order" 
 									    data-name = '<?php echo $product->name; ?>'
 									    data-price='<?php echo $product->sale_price; ?>'
@@ -82,7 +86,12 @@
 
 									    >
 									    <i class="fa fa-plus"></i></a>
+						<?php else: ?>
+						  The quantity is over
+						 <?php endif; ?> 			    
 											      				</td>
+
+										      				
 											      			</tr>
 							<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>				      			
 											      		</tbody>
@@ -190,7 +199,8 @@
 											      			<tr>
 											      				<th>Name</th>
 											      				<th>Price</th>
-											      				<th>Quantity in stock</th>
+											      				<th>Quantity</th>
+											      				<th>Total Price</th>
 											      			</tr>
 											      		</thead>
 											      		<tbody>
@@ -198,7 +208,8 @@
 											      			<tr>
 											      				<td><?php echo $products->name; ?></td>
 											      				<td><?php echo $products->sale_price; ?></td>
-											      				<td><?php echo $products->quantity; ?></td>
+											      				<td><?php echo $products->pivot->quantity; ?></td>
+											      				<td><?php echo number_format($products->sale_price * $products->pivot->quantity,2); ?></td>
 											      				<td>
 	
 											      				</td>
