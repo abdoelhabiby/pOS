@@ -3,7 +3,9 @@
 @section('style')
 
 <style type="text/css">
-
+.form-check{
+	margin-left: 15px;
+}
 
 </style>
 
@@ -70,7 +72,13 @@
 
 @php
  
- $crud = ['create','read','update','delete'];
+ $crud_user = ['create','read','update','delete'];
+ $crud_cat = ['create_cat','read_cat','update_cat','delete_cat'];
+ $crud_pro = ['create_pro','read_pro','update_pro','delete_pro'];
+ $crud_cli = ['create_cli','read_cli','update_cli','delete_cli'];
+ $crud_ord = ['create_ord','read_ord','update_ord','delete_ord'];
+
+
 
 @endphp
 
@@ -80,17 +88,88 @@
 
 	<hr>
          <div class="form-group">
-         	 <label>Permissions</label><br>
-@foreach($crud as $key=>$crud)
+         	 <label class="font-weight-bold">Permissions</label>
+
+
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#super" role="tab" aria-controls="home" aria-selected="true">Supervisor</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#category" role="tab" aria-controls="profile" aria-selected="false">Categorys</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#products" role="tab" aria-controls="contact" aria-selected="false">Products</a>
+  </li> 
+
+   <li class="nav-item">
+    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#Clients" role="tab" aria-controls="contact" aria-selected="false">Clients</a>
+  </li>
+
+    <li class="nav-item">
+    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#Orders" role="tab" aria-controls="contact" aria-selected="false">Orders</a>
+  </li>
+
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="super" role="tabpanel" aria-labelledby="home-tab">
+  	 <br>
+        @foreach($crud_user as $key=>$crud)
 			<div class="form-check form-check-inline mb-2">
 			  <input class="form-check-input" type="checkbox" id="inlineCheckbox{{$key}}" value="{{$crud}}" name="permissions[]">
 
 			  <label class="form-check-label" for="inlineCheckbox{{$key}}">{{$crud}}</label>
 			</div>
-@endforeach	
-	<hr>
+       @endforeach	
+ </div>
+  <div class="tab-pane fade" id="category" role="tabpanel" aria-labelledby="profile-tab">
+  	<br>
+		    @foreach($crud_cat as $key=>$crud)
+					<div class="form-check form-check-inline mb-2">
+					  <input class="form-check-input" type="checkbox" id="inlineCheckbox{{$crud}}" value="{{$crud}}" name="permissions[]">
 
+					  <label class="form-check-label" for="inlineCheckbox{{$crud}}">{{$crud}}</label>
+					</div>
+		@endforeach	
 
+  </div>
+  <div class="tab-pane fade" id="products" role="tabpanel" aria-labelledby="contact-tab">
+  <br>
+       
+       @foreach($crud_pro as $key=>$crud)
+			<div class="form-check form-check-inline mb-2">
+			  <input class="form-check-input" type="checkbox" id="inlineCheckbox{{$crud}}" value="{{$crud}}" name="permissions[]">
+
+			  <label class="form-check-label" for="inlineCheckbox{{$crud}}">{{$crud}}</label>
+			</div>
+        @endforeach
+
+ 
+  </div>
+   
+     <div class="tab-pane fade" id="Clients" role="tabpanel" aria-labelledby="contact-tab">
+     	<br>
+		    @foreach($crud_cli as $key=>$crud)
+					<div class="form-check form-check-inline mb-2">
+					  <input class="form-check-input" type="checkbox" id="inlineCheckbox{{$crud}}" value="{{$crud}}" name="permissions[]">
+
+					  <label class="form-check-label" for="inlineCheckbox{{$crud}}">{{$crud}}</label>
+					</div>
+		 @endforeach
+    </div>
+
+     <div class="tab-pane fade" id="Orders" role="tabpanel" aria-labelledby="contact-tab">
+     	<br>
+          @foreach($crud_ord as $key=>$crud)
+			<div class="form-check form-check-inline mb-2">
+			  <input class="form-check-input" type="checkbox" id="inlineCheckbox{{$crud}}" value="{{$crud}}" name="permissions[]">
+
+			  <label class="form-check-label" for="inlineCheckbox{{$crud}}">{{$crud}}</label>
+			</div>
+        @endforeach	
+    </div>
+
+</div>
 
 
 

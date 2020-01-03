@@ -55,35 +55,35 @@
 /*======end loader=============*/
 
 
-
-
-
 </style>
 
 @endsection
 
+
+@section('search')
+
+    <form action='{{route("orders.index")}}' method="get">
+            <div class="input-group">
+          <input type="text" class="form-control bg-light border-0 small" placeholder="@Lang('site.search')" aria-label="Search" aria-describedby="basic-addon2" name="search" value="{{request()->search}}">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="submit" id="Search">
+                  <i class="fas fa-search fa-sm"></i>
+                </button>
+              </div>
+            </div>
+     </form>
+
+@endsection
+
+
+
 @section('content')
 
-<div class="row mb-5">
+<div>
   
 
-    <h2 class="col-md-6">All Order</h2>
+    <h2 class="mb-4">All Order</h2>
 
-    <div class="col-md-6">
-                           {!! Form::open(['url' => 'dashboard/orders','method' => 'get']) !!}
-                         <div class="row">
-                             <div class="form-group  col-md-8"> 
-                  <input type="text" class="form-control border-0 small d-block" placeholder="Search For" aria-label="Search" aria-describedby="basic-addon2" name="search" value="{{request()->search}}">
-                             </div>
-                             <div class="col-md-4">
-
-                                <button type="submit" class="btn btn-primary">
-                                  <i class="fa fa-search"> </i> Search
-                                </button>
-                             </div>
-                           </div>
-                       {!! Form::close() !!}
-    </div>
 
 </div>
 

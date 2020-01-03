@@ -15,7 +15,7 @@ class OrderController extends Controller
 
 public function __construct(){
 
-    $this->middleware("permission:read_ord")->only('index');
+    // $this->middleware("permission:read_ord")->only('index');
     $this->middleware("permission:create_ord")->only(['store','create']);
     $this->middleware("permission:update_ord")->only('edit');
     $this->middleware("permission:delete_ord")->only('destroy');
@@ -27,15 +27,15 @@ public function __construct(){
 //============================================================================================
 
 
-    public function index()
-    {
+   //  public function index()
+   //  {
 
 
 
-   return "test";
+   // return "test";
+ 
 
-
-    }
+   //  }
 
 
 //============================================================================================

@@ -67,14 +67,19 @@ class UserController extends Controller
             'email'            => 'required|unique:users',
             'password'         => 'required',
             'confirm_password' => 'required|same:password',
-            'image'            => 'required|image',
+            'image'            => 'image|mimes:jpg,jpeg,png,bmp,tiff|max:4096',
          ]);
 
          $validate = request()->except(['_token','confirm_password','permissions','image']);
 
          $validate['password'] = bcrypt(request()->password);
 
-         
+         $permissions =  request('permissions');
+
+
+       
+  if($request->image == true){
+
         $file = request()->file('image');
 
         $temp = time() * 2.1;
@@ -87,11 +92,6 @@ class UserController extends Controller
                 
          $validate['image'] = $file->storeAs("public/testImages",$path);
 
-
-
-          //return $validate;
-
-         $permissions =  request('permissions');
           
          $user = User::create($validate);
 
@@ -114,22 +114,24 @@ class UserController extends Controller
           return redirect(route('users.index'));
 
 
-   
 
+  }else{
+
+       
+
+         $validate['image'] = 'storage/testImages/1/default.jpg';
+          
+         $user = User::create($validate);
+
+         $user->syncPermissions($permissions);
 
     
+         session()->flash('success','Success To Add New User');
+
+          return redirect(route('users.index'));
 
 
-
-
-          
-        //      echo $del . "<br>";
-        //      return $newsname1;
-
- 
-  
-   // echo "<img src=". asset('storage/images/29/1575712485.8146_logo2.png') .">";
-
+       }
 
 
 

@@ -1,7 +1,20 @@
 @extends('layouts.dashboard.app')
 
 
+@section('search')
 
+    <form action='{{route("category.index")}}' method="get">
+            <div class="input-group">
+          <input type="text" class="form-control bg-light border-0 small" placeholder="@Lang('site.search')" aria-label="Search" aria-describedby="basic-addon2" name="search" value="{{request()->search}}">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="submit" id="Search">
+                  <i class="fas fa-search fa-sm"></i>
+                </button>
+              </div>
+            </div>
+     </form>
+
+@endsection
 
 @section('content')
 <div class="container">
@@ -21,39 +34,19 @@
 
 
     <div class="panner ">
-				<div class="row  mb-4">
-					<div class="col-md-3 ">
-                  		  <h2 class="{{ LaravelLocalization::getCurrentLocaleDirection() == 'rtl' ? 'float-right ' : ''}}">Categores</h2>
-                  		  <small>count : {{ $category->total() }}</small>
-                  		  </div>
-                     <div class="to-from col-md-5 text-center">
-                  		
+					          <div >
+                  		  <h2 class="d-inline {{ LaravelLocalization::getCurrentLocaleDirection() == 'rtl' ? 'float-right ' : ''}}">Categores </h2> <span>:  {{ $category->total() }}</span>
+                  	</div>
 
-
-                  		 {!! Form::open(['url' => 'dashboard/category','method' => 'get']) !!}
-                  		   <div class="row">
-                             <div class="form-group  col-md-8"> 
- 									<input type="search" class="form-control border-0 small d-block" placeholder="Search For" aria-label="Search" aria-describedby="basic-addon2" name="search" value="{{request()->search}}">
-                             </div>
-                             <div class="col-md-4">
-
-                                <button type="submit" class="btn btn-primary">
-                                	<i class="fa fa-search"> </i> Search
-                                </button>
-                             </div>
-                           </div>
-                   		 {!! Form::close() !!}
-                  		
-                    </div>
 
 @if(auth()->user()->hasPermissionTo('create_cat'))
-                    <div class="col-md-4 text-center">
+                    <div class="float-right">
                     		  <a href="{{url('dashboard/category/create')}}" class="btn btn-primary ">
 			  	                 <i class="fa fa-plus"> </i> Create New Category
 			                  </a>
                     </div>
+                    <div class="clearfix mb-4"></div>
 @endif
-				 </div>
 
 			<div class="jumbotron " style="background: #FFF; padding: 2rem 2rem">
 

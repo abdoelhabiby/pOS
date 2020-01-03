@@ -53,37 +53,35 @@
 /*======end loader=============*/
 
 
-
-
-
 </style>
 
 <?php $__env->stopSection(); ?>
 
+
+<?php $__env->startSection('search'); ?>
+
+    <form action='<?php echo e(route("orders.index")); ?>' method="get">
+            <div class="input-group">
+          <input type="text" class="form-control bg-light border-0 small" placeholder="<?php echo app('translator')->get('site.search'); ?>" aria-label="Search" aria-describedby="basic-addon2" name="search" value="<?php echo e(request()->search); ?>">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="submit" id="Search">
+                  <i class="fas fa-search fa-sm"></i>
+                </button>
+              </div>
+            </div>
+     </form>
+
+<?php $__env->stopSection(); ?>
+
+
+
 <?php $__env->startSection('content'); ?>
 
-<div class="row mb-5">
+<div>
   
 
-    <h2 class="col-md-6">All Order</h2>
+    <h2 class="mb-4">All Order</h2>
 
-    <div class="col-md-6">
-                           <?php echo Form::open(['url' => 'dashboard/orders','method' => 'get']); ?>
-
-                         <div class="row">
-                             <div class="form-group  col-md-8"> 
-                  <input type="text" class="form-control border-0 small d-block" placeholder="Search For" aria-label="Search" aria-describedby="basic-addon2" name="search" value="<?php echo e(request()->search); ?>">
-                             </div>
-                             <div class="col-md-4">
-
-                                <button type="submit" class="btn btn-primary">
-                                  <i class="fa fa-search"> </i> Search
-                                </button>
-                             </div>
-                           </div>
-                       <?php echo Form::close(); ?>
-
-    </div>
 
 </div>
 

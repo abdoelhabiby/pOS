@@ -1,3 +1,19 @@
+<?php $__env->startSection('search'); ?>
+
+    <form action='<?php echo e(route("client.index")); ?>' method="get">
+            <div class="input-group">
+          <input type="text" class="form-control bg-light border-0 small" placeholder="<?php echo app('translator')->get('site.search'); ?>" aria-label="Search" aria-describedby="basic-addon2" name="search" value="<?php echo e(request()->search); ?>">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="submit" id="Search">
+                  <i class="fas fa-search fa-sm"></i>
+                </button>
+              </div>
+            </div>
+     </form>
+
+<?php $__env->stopSection(); ?>
+
+
 <?php $__env->startSection('content'); ?>
 <div class="container">
 
@@ -17,41 +33,20 @@
 
 
     <div class="panner ">
-				<div class="row  mb-4">
-					<div class="col-md-3 ">
-                  		  <h2 class="<?php echo e(LaravelLocalization::getCurrentLocaleDirection() == 'rtl' ? 'float-right ' : ''); ?>">Clients</h2>
-                  		  <small>count : <?php echo e($client->total()); ?></small>
+					<div class=" ">
+                  		  <h2 class="d-inline <?php echo e(LaravelLocalization::getCurrentLocaleDirection() == 'rtl' ? 'float-right ' : ''); ?>">Clients</h2> <span> : <?php echo e($client->total()); ?></span>
                   		  </div>
-                     <div class="to-from col-md-5 text-center">
-                  		
 
 
-                  		 <?php echo Form::open(['url' => 'dashboard/client','method' => 'get']); ?>
-
-                  		   <div class="row">
-                             <div class="form-group  col-md-8"> 
- 							              		<input type="search" class="form-control border-0 small d-block" placeholder="Search For" aria-label="Search" aria-describedby="basic-addon2" name="search" value="<?php echo e(request()->search); ?>">
-                             </div>
-                             <div class="col-md-4">
-
-                                <button type="submit" class="btn btn-primary">
-                                	<i class="fa fa-search"> </i> Search
-                                </button>
-                             </div>
-                           </div>
-                   		 <?php echo Form::close(); ?>
-
-                  		
-                    </div>
 
 <?php if(auth()->user()->hasPermissionTo('create_cli')): ?>
-                    <div class="col-md-4 text-center">
+                    <div class="float-right">
                     		  <a href="<?php echo e(url('dashboard/client/create')); ?>" class="btn btn-primary ">
 			  	                 <i class="fa fa-plus"> </i> Create New client
 			                  </a>
                     </div>
+                    <div class="clearfix mb-4"></div>
 <?php endif; ?>
-				 </div>
 
 			<div class="jumbotron " style="background: #FFF; padding: 2rem 2rem">
 
@@ -87,6 +82,8 @@
                 <td><?php echo $clients->phone; ?></td>
                 <td><?php echo $clients->address; ?></td>
                 <td>
+          <?php if(auth()->user()->hasPermissionTo('create_ord')): ?>
+
                   <?php echo Form::open(['url' => route("order.create") ]); ?>
 
                     <?php echo method_field('get'); ?>
@@ -95,7 +92,7 @@
                     <?php echo Form::submit('Create Order',['class' => 'btn btn-success btn-sm']); ?>  
                   <?php echo Form::close(); ?>
 
-                 
+           <?php endif; ?>      
                 </td>
 
 	

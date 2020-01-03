@@ -1,5 +1,17 @@
 $(function(){
 	
+
+
+
+
+
+
+
+
+
+
+// ======================================================================
+
   
         if("{{ LaravelLocalization::getCurrentLocaleDirection() }}" == 'rtl'){
         
@@ -17,15 +29,6 @@ $(function(){
 
 		     })
 
-
-		// $("footer").each(function(){
-
-		// 	if($(this).offset().top < 580){
-
-		// 		$(this).css({'position' :'fixed' });
-		// 		$('.copyright').css({'marginRight': '50px'});
-		// 	}
-		// });
 
 
         

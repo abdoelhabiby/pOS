@@ -1,3 +1,19 @@
+<?php $__env->startSection('search'); ?>
+
+    <form action='<?php echo e(route("category.index")); ?>' method="get">
+            <div class="input-group">
+          <input type="text" class="form-control bg-light border-0 small" placeholder="<?php echo app('translator')->get('site.search'); ?>" aria-label="Search" aria-describedby="basic-addon2" name="search" value="<?php echo e(request()->search); ?>">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="submit" id="Search">
+                  <i class="fas fa-search fa-sm"></i>
+                </button>
+              </div>
+            </div>
+     </form>
+
+<?php $__env->stopSection(); ?>
+
+
 <?php $__env->startSection('content'); ?>
 <div class="container">
 
@@ -17,42 +33,22 @@
 
 
     <div class="panner ">
-				<div class="row  mb-4">
-					<div class="col-md-3 ">
-                  		  <h2 class="<?php echo e(LaravelLocalization::getCurrentLocaleDirection() == 'rtl' ? 'float-right ' : ''); ?>"><?php echo app('translator')->get('site.users'); ?></h2>
-                  		  <small>count : <?php echo e($users->total()); ?></small>
+<!-- 				<div class="row  mb-4">
+ -->					<div class=" ">
+                  		  <h2 class="d-inline <?php echo e(LaravelLocalization::getCurrentLocaleDirection() == 'rtl' ? 'float-right ' : ''); ?>"><?php echo app('translator')->get('site.users'); ?> </h2> <span>: <?php echo e($users->total()); ?></span>
                   		  </div>
-                     <div class="to-from col-md-5 text-center">
-                  		
 
-
-                  		 <?php echo Form::open(['url' => 'dashboard/users','method' => 'get']); ?>
-
-                  		   <div class="row">
-                             <div class="form-group  col-md-8"> 
- 									<input type="text" class="form-control border-0 small d-block" placeholder="Search For" aria-label="Search" aria-describedby="basic-addon2" name="search" value="<?php echo e(request()->search); ?>">
-                             </div>
-                             <div class="col-md-4">
-
-                                <button type="submit" class="btn btn-primary">
-                                	<i class="fa fa-search"> </i> Search
-                                </button>
-                             </div>
-                           </div>
-                   		 <?php echo Form::close(); ?>
-
-                  		
-                    </div>
 
 <?php if(auth()->user()->hasPermissionTo('create')): ?>
-                    <div class="col-md-4 text-center">
+                    <div class="float-right">
                     		  <a href="<?php echo e(url('dashboard/users/create')); ?>" class="btn btn-primary ">
 			  	                 <i class="fa fa-plus"> </i> <?php echo app('translator')->get('site.newuser'); ?>
 			                  </a>
                     </div>
+                    <div class="clearfix mb-4"></div>
 <?php endif; ?>
-				 </div>
-
+<!-- 				 </div>
+ -->
 			<div class="jumbotron " style="background: #FFF; padding: 2rem 2rem">
 
 	
@@ -67,8 +63,10 @@
 					      <th scope="col">#</th>
 					      <th scope="col"><?php echo app('translator')->get('site.username'); ?></th>
 					      <th scope="col"><?php echo app('translator')->get('site.email'); ?></th>
-					      <th scope="col"> Permissions </th>
-<?php if(auth()->user()->hasAnyPermission(['update','delete'])): ?>
+<!-- 					      <th scope="col" style="max-width: 100px"> Permissions </th>
+ -->
+
+ <?php if(auth()->user()->hasAnyPermission(['update','delete'])): ?>
              
 					      <th scope="col"><?php echo app('translator')->get('site.action'); ?></th>
 <?php endif; ?>					      
@@ -81,15 +79,16 @@
 					      <th scope="row"><?php echo $user->id; ?></th>
 					      <td><?php echo $user->name; ?></td>
 					      <td><?php echo $user->email; ?></td>
-					      <td>
-					      	<?php 
-                               $permission = $user->getAllPermissions();
+	<!-- 				      <td style="max-width: 100px">
 
-                               foreach ($permission as $value) {
-                               	echo " | " . $value['name'] . " | ";
-                               }
+					      	<?php 
+                               // $permission = $user->getAllPermissions();
+
+                               // foreach ($permission as $value) {
+                               // 	echo " | " . $value['name'] . " | ";
+                               // }
 					      	?>
-					      </td>
+					      </td> -->
 					      <td>
 			<?php if(auth()->user()->hasPermissionTo('update')): ?>		      	
 					      	<a href="users/<?php echo e($user->id); ?>/edit" class="btn btn-info">

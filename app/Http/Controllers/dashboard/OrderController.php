@@ -11,6 +11,18 @@ class OrderController extends Controller
 {
 
 
+public function __construct(){
+
+  return $this->middleware("permission:read_ord")->only(['index','products']);
+  return $this->middleware("permission:delete_ord")->only('destroy');
+
+
+
+}
+
+
+
+
     public function index()
     {
               
@@ -57,37 +69,7 @@ class OrderController extends Controller
 
 //=====================================================================================
 
-    public function create()
-    {
-        //
-    }
 
- //==========================================================================================
-
-    public function store(Request $request)
-    {
-        //
-    }
-
-//=====================================================================================
-
-    public function show(Order $order)
-    {
-        return $order;
-    }
-
-//=====================================================================================
-    public function edit(Order $order)
-    {
-        //
-    }
-
-
-//=====================================================================================
-    public function update(Request $request, Order $order)
-    {
-        //
-    }
 
 //=====================================================================================
     public function destroy(Order $order)
@@ -104,9 +86,7 @@ class OrderController extends Controller
 
             ]);
 
-             
-
-
+ 
            }
 
           $order->delete();

@@ -36,9 +36,9 @@ Route::group(
 
 	     	     Route::resource("/client",'ClientController')->except(['show']);
 	     	     
-	     	     Route::resource("/client/order",'Client\OrderController')->except(['show']);
+	     	     Route::resource("/client/order",'Client\OrderController')->except(['show','index']);
 
-	     	     Route::resource("/orders",'OrderController')->except(['show']);
+	     	     Route::resource("/orders",'OrderController')->only(['index','products','destroy']);
 
 	     	     Route::get("/orders/{id}/products",'OrderController@products')->name('order.products');
 	           

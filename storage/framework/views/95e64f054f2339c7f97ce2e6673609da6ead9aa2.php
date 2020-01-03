@@ -30,9 +30,9 @@
 
              <div class="row">
 
-                 <div class="form-group  col-md-6 row"> 
+                 <div class="form-group  col-md-5 row"> 
 
-                      <select name="category_id" class="form-control col-md-8">
+                      <select name="category_id" class="form-control">
                         <option value="">All Category</option>
                         <?php $__currentLoopData = $category; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cat): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                              
@@ -40,17 +40,10 @@
             
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                       </select>
-                 
-                 <div class="col-md-4">
-
-                    <button type="submit" class="btn btn-primary">
-                      <i class="fa fa-search"> </i> Show
-                    </button>
-                 </div>
               </div>
 
 
-              <div class="col-md-6 row">
+              <div class="col-md-7 row">
                  <div class="col-md-8">   
                  <input type="search" class="form-control border-0 small d-block" placeholder="Search For" aria-label="Search" aria-describedby="basic-addon2" name="search" value="<?php echo e(request()->search); ?>">
                  </div>

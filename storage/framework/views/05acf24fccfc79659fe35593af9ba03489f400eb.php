@@ -1,7 +1,9 @@
 <?php $__env->startSection('style'); ?>
 
 <style type="text/css">
-
+.form-check{
+	margin-left: 15px;
+}
 
 </style>
 
@@ -57,6 +59,10 @@
              	<label>Choose Your Image </label><br>
              	<input type="file" name="image">
 
+          <?php if($errors->has('image')): ?>
+             <p class="text-danger text-uppercase"><?php echo e($errors->first('image')); ?></p>
+          <?php endif; ?>
+
              </div>
   
 
@@ -64,7 +70,13 @@
 
 <?php
  
- $crud = ['create','read','update','delete'];
+ $crud_user = ['create','read','update','delete'];
+ $crud_cat = ['create_cat','read_cat','update_cat','delete_cat'];
+ $crud_pro = ['create_pro','read_pro','update_pro','delete_pro'];
+ $crud_cli = ['create_cli','read_cli','update_cli','delete_cli'];
+ $crud_ord = ['create_ord','read_ord','update_ord','delete_ord'];
+
+
 
 ?>
 
@@ -74,17 +86,88 @@
 
 	<hr>
          <div class="form-group">
-         	 <label>Permissions</label><br>
-<?php $__currentLoopData = $crud; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$crud): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+         	 <label class="font-weight-bold">Permissions</label>
+
+
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#super" role="tab" aria-controls="home" aria-selected="true">Supervisor</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#category" role="tab" aria-controls="profile" aria-selected="false">Categorys</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#products" role="tab" aria-controls="contact" aria-selected="false">Products</a>
+  </li> 
+
+   <li class="nav-item">
+    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#Clients" role="tab" aria-controls="contact" aria-selected="false">Clients</a>
+  </li>
+
+    <li class="nav-item">
+    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#Orders" role="tab" aria-controls="contact" aria-selected="false">Orders</a>
+  </li>
+
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="super" role="tabpanel" aria-labelledby="home-tab">
+  	 <br>
+        <?php $__currentLoopData = $crud_user; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$crud): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 			<div class="form-check form-check-inline mb-2">
 			  <input class="form-check-input" type="checkbox" id="inlineCheckbox<?php echo e($key); ?>" value="<?php echo e($crud); ?>" name="permissions[]">
 
 			  <label class="form-check-label" for="inlineCheckbox<?php echo e($key); ?>"><?php echo e($crud); ?></label>
 			</div>
-<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>	
-	<hr>
+       <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>	
+ </div>
+  <div class="tab-pane fade" id="category" role="tabpanel" aria-labelledby="profile-tab">
+  	<br>
+		    <?php $__currentLoopData = $crud_cat; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$crud): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+					<div class="form-check form-check-inline mb-2">
+					  <input class="form-check-input" type="checkbox" id="inlineCheckbox<?php echo e($crud); ?>" value="<?php echo e($crud); ?>" name="permissions[]">
 
+					  <label class="form-check-label" for="inlineCheckbox<?php echo e($crud); ?>"><?php echo e($crud); ?></label>
+					</div>
+		<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>	
 
+  </div>
+  <div class="tab-pane fade" id="products" role="tabpanel" aria-labelledby="contact-tab">
+  <br>
+       
+       <?php $__currentLoopData = $crud_pro; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$crud): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+			<div class="form-check form-check-inline mb-2">
+			  <input class="form-check-input" type="checkbox" id="inlineCheckbox<?php echo e($crud); ?>" value="<?php echo e($crud); ?>" name="permissions[]">
+
+			  <label class="form-check-label" for="inlineCheckbox<?php echo e($crud); ?>"><?php echo e($crud); ?></label>
+			</div>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+ 
+  </div>
+   
+     <div class="tab-pane fade" id="Clients" role="tabpanel" aria-labelledby="contact-tab">
+     	<br>
+		    <?php $__currentLoopData = $crud_cli; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$crud): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+					<div class="form-check form-check-inline mb-2">
+					  <input class="form-check-input" type="checkbox" id="inlineCheckbox<?php echo e($crud); ?>" value="<?php echo e($crud); ?>" name="permissions[]">
+
+					  <label class="form-check-label" for="inlineCheckbox<?php echo e($crud); ?>"><?php echo e($crud); ?></label>
+					</div>
+		 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    </div>
+
+     <div class="tab-pane fade" id="Orders" role="tabpanel" aria-labelledby="contact-tab">
+     	<br>
+          <?php $__currentLoopData = $crud_ord; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$crud): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+			<div class="form-check form-check-inline mb-2">
+			  <input class="form-check-input" type="checkbox" id="inlineCheckbox<?php echo e($crud); ?>" value="<?php echo e($crud); ?>" name="permissions[]">
+
+			  <label class="form-check-label" for="inlineCheckbox<?php echo e($crud); ?>"><?php echo e($crud); ?></label>
+			</div>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>	
+    </div>
+
+</div>
 
 
 

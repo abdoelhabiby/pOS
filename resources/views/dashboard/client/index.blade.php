@@ -1,6 +1,20 @@
 @extends('layouts.dashboard.app')
 
 
+@section('search')
+
+    <form action='{{route("client.index")}}' method="get">
+            <div class="input-group">
+          <input type="text" class="form-control bg-light border-0 small" placeholder="@Lang('site.search')" aria-label="Search" aria-describedby="basic-addon2" name="search" value="{{request()->search}}">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="submit" id="Search">
+                  <i class="fas fa-search fa-sm"></i>
+                </button>
+              </div>
+            </div>
+     </form>
+
+@endsection
 
 
 @section('content')
@@ -21,39 +35,20 @@
 
 
     <div class="panner ">
-				<div class="row  mb-4">
-					<div class="col-md-3 ">
-                  		  <h2 class="{{ LaravelLocalization::getCurrentLocaleDirection() == 'rtl' ? 'float-right ' : ''}}">Clients</h2>
-                  		  <small>count : {{ $client->total() }}</small>
+					<div class=" ">
+                  		  <h2 class="d-inline {{ LaravelLocalization::getCurrentLocaleDirection() == 'rtl' ? 'float-right ' : ''}}">Clients</h2> <span> : {{ $client->total() }}</span>
                   		  </div>
-                     <div class="to-from col-md-5 text-center">
-                  		
 
 
-                  		 {!! Form::open(['url' => 'dashboard/client','method' => 'get']) !!}
-                  		   <div class="row">
-                             <div class="form-group  col-md-8"> 
- 							              		<input type="search" class="form-control border-0 small d-block" placeholder="Search For" aria-label="Search" aria-describedby="basic-addon2" name="search" value="{{request()->search}}">
-                             </div>
-                             <div class="col-md-4">
-
-                                <button type="submit" class="btn btn-primary">
-                                	<i class="fa fa-search"> </i> Search
-                                </button>
-                             </div>
-                           </div>
-                   		 {!! Form::close() !!}
-                  		
-                    </div>
 
 @if(auth()->user()->hasPermissionTo('create_cli'))
-                    <div class="col-md-4 text-center">
+                    <div class="float-right">
                     		  <a href="{{url('dashboard/client/create')}}" class="btn btn-primary ">
 			  	                 <i class="fa fa-plus"> </i> Create New client
 			                  </a>
                     </div>
+                    <div class="clearfix mb-4"></div>
 @endif
-				 </div>
 
 			<div class="jumbotron " style="background: #FFF; padding: 2rem 2rem">
 
@@ -89,13 +84,15 @@
                 <td>{!! $clients->phone !!}</td>
                 <td>{!! $clients->address !!}</td>
                 <td>
+          @if(auth()->user()->hasPermissionTo('create_ord'))
+
                   {!! Form::open(['url' => route("order.create") ]) !!}
                     @method('get')
                     <input type="hidden" name="client_id" value="{{$clients->id}}">
                       
                     {!! Form::submit('Create Order',['class' => 'btn btn-success btn-sm']) !!}  
                   {!! Form::close() !!}
-                 
+           @endif      
                 </td>
 
 	
