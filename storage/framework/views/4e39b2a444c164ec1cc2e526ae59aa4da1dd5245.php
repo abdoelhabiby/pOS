@@ -113,7 +113,7 @@ unset($__errorArgs, $__bag); ?>
         
                   </form>
                   <hr>
-                  <div class="text-center">
+     <!--              <div class="text-center">
 
                        <?php if(Route::has('password.request')): ?>
                             <a class="btn btn-link" href="<?php echo e(route('password.request')); ?>">
@@ -121,7 +121,7 @@ unset($__errorArgs, $__bag); ?>
 
                             </a>
                         <?php endif; ?> 
-                 </div>
+                 </div> -->
                
                 </div>
               </div>
